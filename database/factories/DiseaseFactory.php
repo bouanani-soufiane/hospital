@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Medicine>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Disease>
  */
-class MedicineFactory extends Factory
+class DiseaseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,6 @@ class MedicineFactory extends Factory
     {
         return [
             "name" => $this->faker->word(),
-            "disease_id" => 1,
         ];
     }
 }

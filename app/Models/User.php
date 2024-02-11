@@ -31,6 +31,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(Doctor::class);
     }
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+
+
+
+
 
     /**
      * The attributes that should be hidden for serialization.

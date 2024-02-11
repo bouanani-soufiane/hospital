@@ -13,8 +13,20 @@ class Patient extends Model
         "birthday",
         "user_id"
     ];
-    public function person()
+    public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
+    public function favorit(){
+        return $this->hasMany(Favorit::class);
+    }
+    public function rate(){
+        return $this->hasMany(Rate::class);
+    }
+    public function appointment(){
+        return $this->hasMany(Appointment::class);
     }
 }

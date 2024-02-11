@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::disableForeignKeyConstraints();
-        Schema::create('specialities', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string('body');
+            $table->foreignId('doctor_id')->constrained('doctors');
+            $table->foreignId('patient_id')->constrained('patients');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('specialities');
+        Schema::dropIfExists('comments');
     }
 };

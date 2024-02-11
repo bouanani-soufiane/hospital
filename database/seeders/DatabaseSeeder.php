@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Admin;
+use App\Models\Medicine;
+use App\Models\Speciality;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -14,8 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Speciality::factory(10)->create();
-        \App\Models\Medicine::factory(10)->create();
+        Speciality::factory()
+            ->has(Medicine::factory()->count(4))
+            ->count(10)
+            ->create();
+
         $adminUser = User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@codex.com',

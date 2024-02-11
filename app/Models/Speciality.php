@@ -13,4 +13,11 @@ class Speciality extends Model
     {
         return $this->belongsToMany(Doctor::class);
     }
+    public function medicine(){
+        return $this->hasMany(Medicine::class);
+    }
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

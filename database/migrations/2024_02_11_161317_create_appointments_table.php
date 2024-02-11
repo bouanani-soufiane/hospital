@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::disableForeignKeyConstraints();
-        Schema::create('specialities', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->foreignId('doctor_id')->constrained('doctors');
+            $table->foreignId('patient_id')->constrained('patients');
+            $table->date('date');
+            $table->enum('shift_work',['shift1','shift2','shift3','shift4']);
+            $table->boolean('isConsulted')->default(0);
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('specialities');
+        Schema::dropIfExists('appointments');
     }
 };

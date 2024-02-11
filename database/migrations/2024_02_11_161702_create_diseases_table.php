@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::disableForeignKeyConstraints();
-        Schema::create('specialities', function (Blueprint $table) {
+        Schema::create('diseases', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('specialities');
+        Schema::dropIfExists('diseases');
     }
 };
