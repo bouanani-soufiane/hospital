@@ -18,7 +18,7 @@ class MedicineFactory extends Factory
     {
         return [
             "name" => $this->faker->word(),
-            "disease_id" => 1,
+//            "disease_id" => 1,
         ];
     }
 }

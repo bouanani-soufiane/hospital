@@ -59,6 +59,22 @@
                                                                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                                                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                                             </div>
+                                                            <div>
+                                                                <x-input-label for="image" :value="__('Image Medicines')" />
+                                                                <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" required autofocus autocomplete="image" />
+                                                                <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                                            </div>
+                                                            <div id="specialties" class="mt-4 ">
+                                                                <x-input-label for="specialy" :value="__('Specialty')" />
+                                                                <select id="specialties" name="specialty" class="block mt-1 w-full p-3 bg-gray-800 text-white" >
+                                                                    <option selected disabled >Choose your spetiality</option>
+                                                                    @foreach ($specialities as $speciality)
+                                                                        <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                <x-input-error :messages="$errors->get('image')" class="mt-2" />
+
+                                                            </div>
                                                             <div class=" pt-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                                                                 <button data-modal-hide="default-modal" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
                                                             </div>
@@ -86,7 +102,7 @@
                                                 <th class="pb-3 text-start min-w-[175px]">#</th>
                                                 <th class="pb-3 text-start min-w-[175px]">Medicines</th>
                                                 <th class="pb-3 text-end min-w-[100px]">Name</th>
-                                                <th class="pb-3 text-end min-w-[100px]">Count</th>
+                                                <th class="pb-3 text-end min-w-[100px]">Speciality</th>
                                                 <th class="pb-3 text-end min-w-[50px] pr-3">Action</th>
                                             </tr>
                                             </thead>
@@ -109,7 +125,7 @@
                                                         <span class="font-semibold text-light-inverse text-md/normal">{{$medicine->name}}</span>
                                                     </td>
                                                     <td class="p-3 pr-0 text-end">
-                                                        <span class="text-center align-baseline inline-flex px-2 py-1 mr-auto items-center font-semibold  text-success bg-success-light rounded-lg">6.5% </span>
+                                                        <span class="text-center align-baseline inline-flex px-2 py-1 mr-auto items-center font-semibold  text-success bg-success-light rounded-lg">{{$medicine->speciality->name}}</span>
                                                     </td>
                                                     <td class="p-3 pr-0 text-end flex justify-end space-x-2">
 
@@ -210,7 +226,7 @@
         modalmedicineButtons.forEach((button) => {
             button.addEventListener("click", function () {
                 const medicineValue = this.getAttribute("data-medicines-id");
-                console.log("Button clicked, medicineValue:", medicineValue);
+                // console.log("Button clicked, medicineValue:", medicineValue);
                 const medicineName = this.getAttribute("data-medicines-name");
 
 

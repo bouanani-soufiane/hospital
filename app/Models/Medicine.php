@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\ImageUpload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Medicine extends Model
 {
-    use HasFactory;
-    protected $fillable = ['name'];
+    use HasFactory , ImageUpload;
+
+    protected $fillable = ['name','speciality_id'];
     public function speciality(){
         return $this->belongsTo(Speciality::class);
     }

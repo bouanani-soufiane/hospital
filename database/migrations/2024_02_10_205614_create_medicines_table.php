@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->foreignId('speciality_id')->constrained('specialities');
-            $table->foreignId('disease_id')->constrained('diseases');
+//            $table->foreignId('disease_id')->constrained('diseases');
             $table->timestamps();
         });
     }

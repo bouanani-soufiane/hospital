@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->enum('shift_work',['shift1','shift2','shift3','shift4']);
             $table->boolean('isConsulted')->default(0);
+            $table->boolean('isUrgent')->default(0);
             $table->timestamps();
         });
     }

@@ -60,6 +60,11 @@
                                                                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                                                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                                                     </div>
+                                                                    <div>
+                                                                        <x-input-label for="image" :value="__('Image Speciality')" />
+                                                                        <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" required autofocus autocomplete="image" />
+                                                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                                                    </div>
                                                                     <div class=" pt-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                                                                         <button data-modal-hide="default-modal" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
                                                                     </div>
@@ -96,8 +101,9 @@
                                                         <td class="p-3 pl-0">
                                                             <div class="flex items-center">
                                                                 <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                                                                    <span>{{ $speciality->id }}</span>
-                                                                    <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-49-new.jpg" class="w-[60px] h-[60px] inline-block shrink-0 rounded-2xl" alt="">
+                                                                    <span>{{$speciality->id}}</span>
+
+                                                                    <img src="{{ asset('storage/'.$speciality->image->path)}}" class="w-[60px] h-[60px] inline-block shrink-0 rounded-2xl" alt="">
                                                                 </div>
 
                                                             </div>

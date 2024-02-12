@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SpecialityRequest;
+use App\ImageUpload;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 
 class SpecialityController extends Controller
 {
+    use ImageUpload;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $specialities = Speciality::latest()->get();
+
         return view('admin.specialities',compact('specialities'));
 
     }
@@ -32,7 +35,9 @@ class SpecialityController extends Controller
     public function store(SpecialityRequest $request)
     {
 
-        Speciality::create($request->validated());
+        $speciality = Speciality::create($request->validated());
+        $this->storeImg($request->file('image'), $speciality);
+
         return redirect()->back();
     }
 

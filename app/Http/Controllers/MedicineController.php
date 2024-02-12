@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MedicineRequest;
 use App\Models\Medicine;
+use App\Models\Speciality;
 use Illuminate\Http\Request;
 
 class MedicineController extends Controller
@@ -14,7 +15,9 @@ class MedicineController extends Controller
     public function index()
     {
         $medicines = Medicine::latest()->get();
-        return view('admin.medicines',compact('medicines'));
+        $specialities = Speciality::latest()->get();
+
+        return view('admin.medicines',compact('medicines','specialities'));
 
     }
 
@@ -31,7 +34,7 @@ class MedicineController extends Controller
      */
     public function store(MedicineRequest $request)
     {
-
+dd($request);
         Medicine::create($request->validated());
         return redirect()->back();
     }

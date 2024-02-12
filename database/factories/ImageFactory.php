@@ -17,7 +17,9 @@ class ImageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-        ];
+            'path' => '1707731280.png',
+            'imageable_type' => 'App\Models\Speciality',
+            'imageable_id' => '15'
+            ];
     }
 }
