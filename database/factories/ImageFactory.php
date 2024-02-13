@@ -18,8 +18,8 @@ class ImageFactory extends Factory
     {
         return [
             'path' => '1707731280.png',
-            'imageable_type' => 'App\Models\Speciality',
-            'imageable_id' => '15'
-            ];
+            'imageable_type' => 'App\Models\Medicine',
+            'imageable_id' => '1'
+        ];
     }
 }

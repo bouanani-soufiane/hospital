@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MedicineRequest;
+use App\ImageUpload;
 use App\Models\Medicine;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 
 class MedicineController extends Controller
 {
+    use ImageUpload;
     /**
      * Display a listing of the resource.
      */
@@ -34,8 +36,9 @@ class MedicineController extends Controller
      */
     public function store(MedicineRequest $request)
     {
-dd($request);
-        Medicine::create($request->validated());
+
+        $medicine = Medicine::create($request->validated());
+
         return redirect()->back();
     }
 
@@ -60,8 +63,13 @@ dd($request);
      */
     public function update(MedicineRequest $request)
     {
-        $medicine = Medicine::findOrFail($request->validated()['id']);
-        $medicine->update($request->validated());
+//        dd($request);
+
+        Medicine::where('id', $request->validated()['id'])
+            ->update([
+                'name' => $request->validated()['name'],
+                'speciality_id' => $request->validated()['speciality_id']
+            ]);
 
         return redirect()->back();
     }

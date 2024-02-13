@@ -22,10 +22,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'role:doctor'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,9 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth','role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index']);
-});
+
 
 // Doctor Route
 Route::middleware(['auth','role:doctor'])->group(function () {
@@ -48,8 +49,8 @@ Route::middleware(['auth','role:patient'])->group(function () {
 });
 
 
-Route::resource('admin/specialities', SpecialityController::class);
+Route::resource('/specialities', SpecialityController::class);
 
-Route::resource('/admin/medicines', MedicineController::class);
+Route::resource('/medicines', MedicineController::class);
 
 require __DIR__.'/auth.php';

@@ -14,28 +14,7 @@
 <div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
 <x-dashboard-top></x-dashboard-top>
     <div class="px-6 pt-6 2xl:container">
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div class="md:col-span-2 lg:col-span-1" >
-                <div class="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
-                    <div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
-
-                </div>
-            </div>
-            <div>
-                <div class="lg:h-full py-8 px-6 text-gray-600 rounded-xl border border-gray-200 bg-white">
-
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="container mx-auto mt-12  ">
+        <div class="container mx-auto mt-12  ">
         <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
             <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
                 <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -106,6 +85,7 @@
         </div>
 
 
+    </div>
     </div>
 </div>
 

@@ -15,13 +15,12 @@ return new class extends Migration
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->foreignId('speciality_id')->constrained('specialities');
-//            $table->foreignId('disease_id')->constrained('diseases');
+            $table->foreignId('speciality_id')->constrained('specialities')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
 
-    /**
+    /**`
      * Reverse the migrations.
      */
     public function down(): void

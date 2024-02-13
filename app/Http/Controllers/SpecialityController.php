@@ -62,12 +62,9 @@ class SpecialityController extends Controller
      */
     public function update(SpecialityRequest $request)
     {
-        // Find the Speciality by ID
         $speciality = Speciality::findOrFail($request->validated()['id']);
-
-        // Update the Speciality with the validated data
         $speciality->update($request->validated());
-
+        $this->updateImg($speciality, $request->file('image'));
         return redirect()->back();
     }
 

@@ -19,6 +19,9 @@ class Speciality extends Model
     public function medicine(){
         return $this->hasMany(Medicine::class);
     }
+    public function disease(){
+        return $this->hasMany(Disease::class);
+    }
     public function image(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\ImageUpload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Medicine extends Model
 {
@@ -14,9 +15,7 @@ class Medicine extends Model
     public function speciality(){
         return $this->belongsTo(Speciality::class);
     }
-    public function disease(){
-        return $this->belongsTo(Disease::class);
-    }
+
     public function consultation(): BelongsToMany
     {
         return $this->belongsToMany(Consultation::class);

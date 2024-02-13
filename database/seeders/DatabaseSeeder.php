@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Speciality::factory()
-            ->has(Medicine::factory()->count(4))
-            ->count(10)
+            ->has(Medicine::factory()->count(2))
+            ->count(3)
             ->create();
-        Image::factory()->count(10)->create();
+        Image::factory()->count(9)->create();
         $adminUser = User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@codex.com',

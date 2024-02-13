@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Disease extends Model
 {
     use HasFactory;
-    public function medicine()
+    public function speciality()
     {
-        return $this->hasMany(Medicine::class);
+        return $this->belongsTo(Speciality::class);
     }
 }

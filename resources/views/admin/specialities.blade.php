@@ -89,6 +89,7 @@
                                                 <table class="w-full my-0 align-middle text-dark border-neutral-200">
                                                     <thead class="align-bottom">
                                                     <tr class="font-semibold text-[0.95rem] text-secondary-dark">
+                                                        <th class="pb-3 text-start min-w-[175px]">#</th>
                                                         <th class="pb-3 text-start min-w-[175px]">Speciality</th>
                                                         <th class="pb-3 text-end min-w-[100px]">Name</th>
                                                         <th class="pb-3 text-end min-w-[100px]">Count</th>
@@ -100,8 +101,12 @@
                                                     <tr class="border-b border-dashed last:border-b-0">
                                                         <td class="p-3 pl-0">
                                                             <div class="flex items-center">
+                                                                <span>{{ $speciality->id }}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td class="p-3 pl-0">
+                                                            <div class="flex items-center">
                                                                 <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                                                                    <span>{{$speciality->id}}</span>
 
                                                                     <img src="{{ asset('storage/'.$speciality->image->path)}}" class="w-[60px] h-[60px] inline-block shrink-0 rounded-2xl" alt="">
                                                                 </div>
@@ -139,20 +144,26 @@
                                                                             </div>
                                                                             <!-- Modal body -->
                                                                             <div class="p-4 md:p-5 space-y-4">
-                                                                                <form method="POST" action="{{ route('specialities.update', $speciality) }}">
+                                                                                <x-form  action="{{ route('specialities.update', $speciality) }}" has-files>
+
                                                                                     @csrf
                                                                                     @method('PATCH')
                                                                                     <div>
-                                                                                        <input type="text" id="specialityId" value="{{ $speciality->id }}" name="id">
+                                                                                        <input type="hidden" id="specialityId" value="{{ $speciality->id }}" name="id">
                                                                                         <x-input-label for="name" :value="__('Name Speciality')" />
                                                                                         <x-text-input id="namespeciality" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                                                                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <x-input-label for="image" :value="__('Image Speciality')" />
+                                                                                        <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" required autofocus autocomplete="image" />
+                                                                                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
                                                                                     </div>
                                                                                     <div class=" pt-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                                                                                         <button data-modal-hide="default-modal" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
                                                                                     </div>
 
-                                                                                </form>
+                                                                                </x-form>
 
                                                                             </div>
                                                                             <!-- Modal footer -->

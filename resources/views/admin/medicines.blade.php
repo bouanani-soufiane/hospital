@@ -59,14 +59,9 @@
                                                                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                                                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                                             </div>
-                                                            <div>
-                                                                <x-input-label for="image" :value="__('Image Medicines')" />
-                                                                <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" required autofocus autocomplete="image" />
-                                                                <x-input-error :messages="$errors->get('image')" class="mt-2" />
-                                                            </div>
                                                             <div id="specialties" class="mt-4 ">
-                                                                <x-input-label for="specialy" :value="__('Specialty')" />
-                                                                <select id="specialties" name="specialty" class="block mt-1 w-full p-3 bg-gray-800 text-white" >
+                                                                <x-input-label for="speciality_id" :value="__('Specialty')" />
+                                                                <select id="specialties" name="speciality_id" class="block mt-1 w-full p-3 bg-gray-800 text-white" >
                                                                     <option selected disabled >Choose your spetiality</option>
                                                                     @foreach ($specialities as $speciality)
                                                                         <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
@@ -100,7 +95,6 @@
                                             <thead class="align-bottom">
                                             <tr class="font-semibold text-[0.95rem] text-secondary-dark">
                                                 <th class="pb-3 text-start min-w-[175px]">#</th>
-                                                <th class="pb-3 text-start min-w-[175px]">Medicines</th>
                                                 <th class="pb-3 text-end min-w-[100px]">Name</th>
                                                 <th class="pb-3 text-end min-w-[100px]">Speciality</th>
                                                 <th class="pb-3 text-end min-w-[50px] pr-3">Action</th>
@@ -114,13 +108,7 @@
                                                             <span>{{ $medicine->id }}</span>
                                                         </div>
                                                     </td>
-                                                    <td class="p-3 pl-0">
-                                                        <div class="flex items-center">
-                                                            <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                                                                <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-49-new.jpg" class="w-[60px] h-[60px] inline-block shrink-0 rounded-2xl" alt="">
-                                                            </div>
-                                                        </div>
-                                                    </td>
+
                                                     <td class="p-3 pr-0 text-end">
                                                         <span class="font-semibold text-light-inverse text-md/normal">{{$medicine->name}}</span>
                                                     </td>
@@ -152,14 +140,23 @@
                                                                         </div>
                                                                         <!-- Modal body -->
                                                                         <div class="p-4 md:p-5 space-y-4">
-                                                                            <form method="POST" action="{{ route('medicines.update', $medicine) }}">
+                                                                            <form method="POST" action="{{ route('medicines.update', $medicine)}}">
                                                                                 @csrf
                                                                                 @method('PATCH')
                                                                                 <div>
-                                                                                    <input type="text" id="medicinesId" value="{{ $medicine->id }}" name="id">
+                                                                                    <input type="hidden" id="medicinesId" value="{{ $medicine->id }}" name="id">
                                                                                     <x-input-label for="name" :value="__('Name Medicine')" />
                                                                                     <x-text-input id="nameMedical" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                                                                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                                                                </div>
+                                                                                <div id="specialties" class="mt-4 ">
+                                                                                    <x-input-label for="specialy" :value="__('Specialty')" />
+                                                                                    <select id="specialties" name="speciality_id" class="block mt-1 w-full p-2  bg-gray-800 text-white" >
+                                                                                        <option selected disabled >Choose your spetiality</option>
+                                                                                        @foreach ($specialities as $speciality)
+                                                                                            <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
                                                                                 </div>
                                                                                 <div class=" pt-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                                                                                     <button data-modal-hide="default-modal" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>

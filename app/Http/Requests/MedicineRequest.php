@@ -24,6 +24,7 @@ class MedicineRequest extends FormRequest
         return [
             'id' => '',
             'name' => 'required',
+            'speciality_id' => '',
         ];
     }
 }
