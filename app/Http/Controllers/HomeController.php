@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RateRequest;
-use App\Models\Rate;
+use App\Models\Doctor;
+use App\Models\Speciality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class RateController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $specialities = Speciality::latest()->get();
+        $doctors = Doctor::latest()->get();
+
+
+        return view('welcome',compact('specialities','doctors'));
     }
 
     /**
@@ -27,16 +32,15 @@ class RateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RateRequest $request)
+    public function store(Request $request)
     {
-        Rate::create($request->validated());
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Rate $rate)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +48,7 @@ class RateController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Rate $rate)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +56,7 @@ class RateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rate $rate)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +64,7 @@ class RateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rate $rate)
+    public function destroy(string $id)
     {
         //
     }

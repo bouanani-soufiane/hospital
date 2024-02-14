@@ -13,44 +13,106 @@
 
     </head>
     <body>
-    <nav class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-blueGray-800">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-            <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start ">
-                <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="/">Mediconnect</a><button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" onclick="toggleNavbar('example-collapse-navbar')">
-                    <i class="text-white fas fa-bars"></i>
+
+<!-- component -->
+<nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
+    <!-- logo -->
+    <div class="inline-flex">
+        <a class="_o6689fn font-bold" href="/">
+            mediconnection
+        </a>
+    </div>
+
+    <!-- end logo -->
+
+    <!-- search bar -->
+    <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
+        <div class="inline-block">
+            <div class="inline-flex items-center max-w-full">
+                <button class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-60 border rounded-full px-1  py-1" type="button">
+                    <div class="block flex-grow flex-shrink overflow-hidden">Start your search</div>
+                    <div class="flex items-center justify-center relative  h-8 w-8 rounded-full">
+                        <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                            style="
+                            display: block;
+                            fill: none;
+                            height: 12px;
+                            width: 12px;
+                            stroke: currentcolor;
+                            stroke-width: 5.33333;
+                            overflow: visible;
+                        "
+                        >
+                            <g fill="none">
+                                <path
+                                    d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
+                                ></path>
+                            </g>
+                        </svg>
+                    </div>
                 </button>
             </div>
-            <div class="lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none hidden bg-blueGray-800" id="example-collapse-navbar">
-                <ul class="flex flex-col lg:flex-row list-none mr-auto">
-                    <li class="flex items-center">
-                        <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                            @auth
-                                <a href="{{ url('/profile') }}" class="font-semibold text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-white   ">profile</a>
-                            @else
-                                <a href="{{ route('login') }}" class="font-semibold text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-white   ">Log in</a>
+        </div>
+    </div>
+    <!-- end search bar -->
 
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-white hover:text-gray-900 dark:text-gray-400 dark:hover:text-white   ">Register</a>
-                                @endif
-                            @endauth
-                        </div>
-                    </li>
-                </ul>
+    <!-- login -->
+    <div class="flex-initial">
+        <div class="flex justify-end items-center relative">
 
+
+
+            <div class="block">
+                <div class="inline relative">
+                    @auth
+                    <a href="{{ url('/profile') }}">
+                        <button type="button" class="inline-flex items-center relative px-2 border rounded-full hover:shadow-lg">
+
+                            <div class="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
+                                <svg
+                                    viewBox="0 0 32 32"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                    role="presentation"
+                                    focusable="false"
+                                    style="display: block; height: 100%; width: 100%; fill: currentcolor;"
+                                >
+                                    <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </a>
+                        @else
+                             <a href="{{ route('login') }}" class="font-bold dark:text-black dark:hover:text-gray-500 ">Log in</a>
+
+                             @if (Route::has('register'))
+                                 <a href="{{ route('register') }}" class="ml-4 font-bold  dark:text-black dark:hover:text-gray-500 ">Register</a>
+                             @endif
+                    @endauth
+
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
 
+</nav>
 
     <!-- component -->
-            <main >
-                <section class="bg-white dark:bg-gray-900 p-6">
+            <main class="bg-white dark:bg-gray-900">
+                <section class="bg-white dark:bg-gray-900 p-6 ">
 
                     <div class="container mx-auto px-6 py-16 text-center">
                         <div class="mx-auto sm:max-w-xl">
                             <h1 class="text-3xl font-bold text-gray-800 dark:text-white lg:text-4xl">Discover excellence in healthcare with Mediconnect </h1>
                             <p class="mt-6 mb-6 text-gray-500 dark:text-gray-300">connecting you to the finest doctors and providing swift and convenient appointment scheduling</p>
+                         @if(!auth()->check())
                             <a href="{{ route('register') }}" class="mt-6 rounded-lg bg-blue-600 px-6 py-2.5 text-center text-sm font-medium capitalize leading-5 text-white hover:bg-blue-500 focus:outline-none lg:mx-0 lg:w-auto">Start By Creating Accout</a>
+                            @endif
                         </div>
 
                         <div class="mt-10 flex justify-center">
@@ -58,8 +120,42 @@
                         </div>
                     </div>
                 </section>
+                    <div class="container mx-auto mx-auto p-4 text-white ">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+                           @foreach($specialities as $speciality)
+                                <div class=" rounded-lg border p-4">
+                                     <img src="{{ asset('storage/'.$speciality->image->path)}}" alt="Placeholder Image" class="w-full h-48 rounded-md object-cover">
+                                    <div class="px-1 py-2">
+                                        <div class="font-bold text-xl mb-2">{{ $speciality->name}}</div>
+                                    </div>
+                                    <div class="px-1 py-2">
+                                        <a href="#" class="text-blue-500 font-bold  hover:underline">discover</a>
+                                    </div>
 
+                                </div>
+                            @endforeach
+                        </div>
 
+                    </div>
+                <div class="container mx-auto mx-auto p-4 text-white ">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+                        @foreach($doctors as $doctor)
+                            <div class=" rounded-lg border p-4">
+                                <img src="{{ asset('storage/1707771921.png')}}" alt="Placeholder Image" class="w-full h-48 rounded-md object-cover">
+                                <div class="px-1 py-2">
+                                    <div class="font-bold text-xl mb-2">{{ $doctor->user->name}}</div>
+                                </div>
+                                <div class="px-1 py-2">
+                                    <a href="{{route('doctor.show',$doctor)}}" class="text-blue-500 font-bold  hover:underline">visite doctor page</a>
+                                </div>
+
+                            </div>
+                        @endforeach
+                    </div>
+
+                </div>
+
+            </main>
                 <footer class="bg-white dark:bg-gray-900">
                     <div class="container mx-auto px-6 py-12">
 
@@ -73,6 +169,6 @@
                         </div>
                     </div>
                 </footer>
-            </main>
+
     </body>
 </html>

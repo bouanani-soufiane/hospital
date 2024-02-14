@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
+            $table->integer('nbr_stars');
             $table->foreignId('doctor_id')->constrained('doctors');
             $table->foreignId('patient_id')->constrained('patients');
             $table->timestamps();

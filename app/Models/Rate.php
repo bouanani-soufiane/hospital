@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Rate extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'doctor_id',
+        'patient_id',
+        'nbr_stars',
+
+    ];
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);

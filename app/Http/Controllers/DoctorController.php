@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use App\Models\Comment;
 use App\Models\Doctor;
+use App\Models\Rate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DoctorController extends Controller
 {
@@ -37,8 +41,28 @@ class DoctorController extends Controller
      */
     public function show(Doctor $doctor)
     {
-        //
+        $enumOptions = collect(DB::select("SHOW COLUMNS FROM appointments WHERE Field = 'shift_work'"))
+            ->pluck('Type')
+            ->first();
+
+        preg_match("/^enum\('(.*)'\)$/", $enumOptions, $matches);
+
+        $enumValues = explode("','", $matches[1]);
+
+        $available_work_shift = Appointment::where('doctor_id', $doctor->id)
+            ->pluck('shift_work');
+
+        $comments = Comment::where('doctor_id', $doctor->id)
+            ->latest()->get();
+
+
+        $avg_rate = Rate::where('doctor_id', $doctor->id)
+            ->avg('nbr_stars');
+
+
+        return view('doctor.profile', compact('doctor', 'enumValues','available_work_shift','comments','avg_rate'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'doctor_id',
+        'patient_id',
+        'body',
+
+    ];
+    protected  $with  = ['patient'];
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
@@ -15,6 +22,6 @@ class Comment extends Model
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patient::class,'patient_id');
     }
 }

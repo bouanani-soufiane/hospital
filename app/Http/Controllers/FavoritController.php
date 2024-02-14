@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FavoritRequest;
 use App\Models\Favorit;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,10 @@ class FavoritController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FavoritRequest $request)
     {
-        //
+        Favorit::create($request->validated());
+        return redirect()->back();
     }
 
     /**

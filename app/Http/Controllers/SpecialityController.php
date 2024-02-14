@@ -36,7 +36,7 @@ class SpecialityController extends Controller
     {
 
         $speciality = Speciality::create($request->validated());
-        $this->storeImg($request->file('image'), $speciality);
+        $this->storeImg($speciality, $request->file('image'));
 
         return redirect()->back();
     }
