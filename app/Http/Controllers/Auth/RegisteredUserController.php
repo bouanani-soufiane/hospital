@@ -26,7 +26,6 @@ class RegisteredUserController extends Controller
     {
         $specialities = Speciality::all();
         return view('auth.register', compact('specialities'));
-
     }
 
     /**

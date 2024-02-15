@@ -109,7 +109,14 @@
                     <div class="container mx-auto px-6 py-16 text-center">
                         <div class="mx-auto sm:max-w-xl">
                             <h1 class="text-3xl font-bold text-gray-800 dark:text-white lg:text-4xl">Discover excellence in healthcare with Mediconnect </h1>
-                            <p class="mt-6 mb-6 text-gray-500 dark:text-gray-300">connecting you to the finest doctors and providing swift and convenient appointment scheduling</p>
+
+                                <div class="mx-auto mt-6 flex justify-center">
+                                    <span class="inline-block h-1 w-40 rounded-full bg-blue-500"></span>
+                                    <span class="mx-1 inline-block h-1 w-3 rounded-full bg-blue-500"></span>
+                                    <span class="inline-block h-1 w-1 rounded-full bg-blue-500"></span>
+                                </div>
+                            <p class="mt-6 mb-6 text-3xl font-bold text-gray-800 dark:text-white lg:text-4xl">take an urgent Appointment</p>
+                            <a href="{{ route('register') }}" class="inline-flex items-center px-12 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-red-500 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">Urgent</a>
                          @if(!auth()->check())
                             <a href="{{ route('register') }}" class="mt-6 rounded-lg bg-blue-600 px-6 py-2.5 text-center text-sm font-medium capitalize leading-5 text-white hover:bg-blue-500 focus:outline-none lg:mx-0 lg:w-auto">Start By Creating Accout</a>
                             @endif
@@ -121,6 +128,9 @@
                     </div>
                 </section>
                     <div class="container mx-auto mx-auto p-4 text-white ">
+
+                        <h1 class="mt-8 text-center text-5xl text-white font-bold mb-[60px]">Discover All Specialities</h1>
+
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
                            @foreach($specialities as $speciality)
                                 <div class=" rounded-lg border p-4">
@@ -129,7 +139,7 @@
                                         <div class="font-bold text-xl mb-2">{{ $speciality->name}}</div>
                                     </div>
                                     <div class="px-1 py-2">
-                                        <a href="#" class="text-blue-500 font-bold  hover:underline">discover</a>
+                                        <a href="{{ route('showBySpeciality', ['speciality' => $speciality]) }}" class="text-blue-500 font-bold hover:underline">discover</a>
                                     </div>
 
                                 </div>
@@ -138,6 +148,8 @@
 
                     </div>
                 <div class="container mx-auto mx-auto p-4 text-white ">
+                    <h1 class="mt-8 text-center text-5xl text-white font-bold mb-[60px]">Recommended Doctors</h1>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
                         @foreach($doctors as $doctor)
                             <div class=" rounded-lg border p-4">

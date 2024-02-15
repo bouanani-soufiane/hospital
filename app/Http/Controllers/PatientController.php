@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use App\Models\Favorit;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -12,7 +15,9 @@ class PatientController extends Controller
      */
     public function index()
     {
-        return view('patient.index');
+        $favorites = Favorit::where('patient_id', Auth::user()->patient->id)->count();
+        $appointments = Appointment::where('patient_id', Auth::user()->patient->id)->count();
+        return view('patient.index',compact('favorites','appointments'));
     }
 
     /**

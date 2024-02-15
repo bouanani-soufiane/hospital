@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Comment;
 use App\Models\Doctor;
+use App\Models\Medicine;
 use App\Models\Rate;
+use App\Models\Speciality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DoctorController extends Controller
@@ -16,7 +19,11 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return view('doctor.index');
+        $medicines = Medicine::all();
+        $appointments = Appointment::where('doctor_id', Auth::user()->doctor->id)
+            ->where('isConsulted', 0)
+            ->get();
+        return view('doctor.index',compact('appointments','medicines'));
 
     }
 
@@ -86,5 +93,13 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
         //
+    }
+    public function showBySpeciality(Speciality $speciality)
+    {
+        $doctors = Doctor::where('speciality_id', $speciality->id)
+            ->latest()
+            ->get();
+
+        return view('doctor.DoctorBySpeciality', compact('doctors','speciality'));
     }
 }

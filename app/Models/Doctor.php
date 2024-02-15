@@ -16,7 +16,7 @@ class Doctor extends Model
         "user_id"
     ];
     public function speciality(){
-        return $this->hasOne(Speciality::class);
+        return $this->hasOne(Speciality::class,'user_id');
     }
     public function appointment(){
         return $this->hasMany(Appointment::class);

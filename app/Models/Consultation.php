@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Consultation extends Model
 {
     use HasFactory;
+    protected $fillable = ['days_of' , 'appointment_id'];
      public function appointment(): HasOne
     {
         return $this->hasOne(Appointment::class);

@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $specialities = Speciality::latest()->get();
-        $doctors = Doctor::latest()->get();
+        $doctors = Doctor::latest()->take(4)->get();
 
 
         return view('welcome',compact('specialities','doctors'));

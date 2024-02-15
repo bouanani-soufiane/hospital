@@ -14,11 +14,11 @@ class Favorit extends Model
     ];
     public function doctor()
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsTo(Doctor::class,'user_id');
     }
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patient::class,'user_id');
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\HomeController;
@@ -57,11 +58,16 @@ Route::resource('/specialities', SpecialityController::class);
 Route::resource('/medicines', MedicineController::class);
 
 Route::resource('/', HomeController::class);
+
+Route::get('/showBySpeciality/{speciality}', [DoctorController::class, 'showBySpeciality'])->name('showBySpeciality');
+
 Route::resource('/doctor', DoctorController::class);
+
 Route::resource('/appointment', AppointmentController::class);
 Route::resource('/comment', CommentController::class);
 Route::resource('/favorit', FavoritController::class);
 Route::resource('/rate', RateController::class);
+Route::resource('/consultation', ConsultationController::class);
 
 
 require __DIR__.'/auth.php';

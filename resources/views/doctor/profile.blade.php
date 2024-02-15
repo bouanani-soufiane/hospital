@@ -165,7 +165,7 @@
                                 <form method="post" action="{{route('favorit.store')}}">
                                     @csrf
                                     <input type="hidden" name="doctor_id" value="{{ $doctor->id}}">
-                                    <input type="hidden" name="patient_id" value="{{ $doctor->id}}">
+                                    <input type="hidden" name="patient_id" value="{{ Auth::user()->patient->id}}">
                                     <button type="submit" class="bg-white py-1 px-2 rounded text-white text-sm hover:bg-red-500 hover:text-white transition">
                                            <ion-icon class="my-auto px-3 text-red-600 text-xl hover:text-white" name="heart"></ion-icon>
                                     </button>
@@ -180,7 +180,7 @@
                                 <form method="post" action="{{route('rate.store')}}">
                                     @csrf
                                     <input type="hidden" name="doctor_id" value="{{ $doctor->id}}">
-                                    <input type="hidden" name="patient_id" value="{{ $doctor->id}}">
+                                    <input type="hidden" name="patient_id" value="{{ Auth::user()->patient->id}}">
                                     <input type="number" value="5" max="5" min="1" name="nbr_stars" class="w-[50px]">
                                     <button type="submit" class="bg-white py-1 px-2 rounded text-sm hover:bg-red-500 hover:text-white transition">
                                         add
