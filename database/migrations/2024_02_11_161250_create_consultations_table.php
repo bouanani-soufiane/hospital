@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
             $table->integer('days_of');
+            $table->text('description');
             $table->foreignId('appointment_id')->constrained('appointments');
             $table->timestamps();
         });

@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class Consultation extends Model
 {
     use HasFactory;
-    protected $fillable = ['days_of' , 'appointment_id'];
-     public function appointment(): HasOne
+    protected $fillable = ['days_of' , 'appointment_id','description'];
+    public function appointment()
     {
-        return $this->hasOne(Appointment::class);
+        return $this->belongsTo(Appointment::class);
     }
-    public function medicine(): BelongsToMany
+    public function medicine()
     {
-        return $this->belongsToMany(Medicine::class);
+        return $this->belongsToMany(Medicine::class, 'App\Models\consultation_medicine');
     }
 }

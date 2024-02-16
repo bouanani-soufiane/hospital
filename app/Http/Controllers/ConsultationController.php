@@ -31,6 +31,7 @@ class ConsultationController extends Controller
      */
     public function store(ConsultationRequest $request)
     {
+//        dd($request->validated());
         $consultation = Consultation::create($request->validated());
         foreach($request->medicine_id as $medicine){
             $consultation_medicines = new consultation_medicine();

@@ -10,7 +10,7 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
 </head>
 <body>
@@ -76,7 +76,7 @@
                                         <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{($favorites)}}</span><span class="text-sm text-blueGray-400">Favorits</span>
                                     </div>
                                     <div class="mr-4 p-3 text-center">
-                                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$appointments}}</span><span class="text-sm text-blueGray-400">Appointments</span>
+                                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$appointments->count()}}</span><span class="text-sm text-blueGray-400">Appointments</span>
                                     </div>
                                     <div class="lg:mr-4 p-3 text-center">
                                         <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">89</span><span class="text-sm text-blueGray-400">Consultations</span>
@@ -93,33 +93,64 @@
                         </div>
                         <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
                             <div class="flex flex-wrap justify-center">
-                                <div class="w-full lg:w-9/12 px-4">
-                                    <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                                        An artist of considerable range, Jenna the name taken by
-                                        Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                                        performs and records all of his own music, giving it a
-                                        warm, intimate feel with a solid groove structure. An
-                                        artist of considerable range.
-                                    </p>
-                                    <a href="#pablo" class="font-normal text-pink-500">Show more</a>
+
+                                @foreach($consultations as $consultation)
+                                <div class=" w-[700px] mb-12 flex items-center justify-center">
+                                    <div class="px-10">
+                                        <div class="bg-white max-w-xl rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
+                                            <div class="flex justify-between mb-12">
+                                                <div class="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-white">LOGO</div>
+                                                 <div class="flex flex-col items-center space-x-2">
+                                                     <div class="w-fit px-4 h-14  rounded flex items-center justify-center font-bold ">Ordonance</div>
+
+                                                 </div>
+
+                                            </div>
+                                            <div class="flex  mb-12 justify-end">
+
+                                                <div class="flex flex-col items-center space-x-2 justify-end">
+                                                    <h1>le :{{$consultation->created_at->format('j-m-Y')}}</h1>
+                                                    <h1 class="">
+                                                        Dr. {{$consultation->appointment->doctor->user->name}}</h1>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+
+                                                <p class="mt-4 text-md text-gray-600"> <span class="font-bold underline">symptoms : </span> {{$consultation->description}}</p>
+                                                <p class="text-start my-5 text-lg text-gray-600 font-bold underline">Repos prescrit : <span class="font-semibold">{{$consultation->days_of}}</span></p>
+                                                <h1 class="text-start my-5 text-lg text-gray-600 font-bold underline">Médicaments : </h1>
+                                                <div class="flex justify-between ">
+                                                    <div class="flex">
+                                                        <ul class="list-disc mx-3">
+                                                            @foreach($consultation->medicine as $medicine)
+                                                                <li class="flex items-center space-x-2">
+                                                                    <i class="fas fa-capsules fa-2xl"></i>                                                                   <span>{{$medicine->name}}</span>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="flex justify-between items-center">
+                                                    <div class="mt-4 flex items-center space-x-4 py-6">
+
+                                                    </div>
+                                                    <div class="p-6 bg-yellow-400 rounded-full h-4 w-4 flex items-center justify-center text-2xl text-white mt-4 shadow-lg cursor-pointer">pdf</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <footer class="relative bg-blueGray-200 pt-8 pb-6 mt-8">
-                <div class="container mx-auto px-4">
-                    <div class="flex flex-wrap items-center md:justify-between justify-center">
-                        <div class="w-full md:w-6/12 px-4 mx-auto text-center">
-                            <div class="text-sm text-blueGray-500 font-semibold py-1">
-                                Made with <a href="https://www.creative-tim.com/product/notus-js" class="text-blueGray-500 hover:text-gray-800" target="_blank">Notus JS</a> by <a href="https://www.creative-tim.com" class="text-blueGray-500 hover:text-blueGray-800" target="_blank"> Creative Tim</a>.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+
         </section>
+
     </main>
 
     <footer class="bg-white dark:bg-gray-900">

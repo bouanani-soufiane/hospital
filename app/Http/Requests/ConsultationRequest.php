@@ -23,6 +23,7 @@ class ConsultationRequest extends FormRequest
     {
         return [
             'days_of' => 'required',
+            'description' => 'required',
             'appointment_id' => 'required',
         ];
     }

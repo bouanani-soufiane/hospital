@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Consultation;
 use App\Models\Favorit;
 use App\Models\Patient;
 use Illuminate\Http\Request;
@@ -16,8 +17,10 @@ class PatientController extends Controller
     public function index()
     {
         $favorites = Favorit::where('patient_id', Auth::user()->patient->id)->count();
-        $appointments = Appointment::where('patient_id', Auth::user()->patient->id)->count();
-        return view('patient.index',compact('favorites','appointments'));
+        $appointments = Appointment::where('patient_id', Auth::user()->patient->id);
+        $appointmentIds = $appointments->pluck('id')->toArray();
+        $consultations = Consultation::whereIn('appointment_id', $appointmentIds)->get();
+        return view('patient.index',compact('favorites','appointments','consultations'));
     }
 
     /**
